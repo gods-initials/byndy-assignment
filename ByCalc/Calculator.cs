@@ -1,17 +1,15 @@
 using System.IO.Pipelines;
 
-namespace ByCalc
+namespace ByCalc;
+public class Calculator
 {
-    public class Calculator
+    private Tokenizer tokenizer = new();
+    private Parser parser = new();
+    public double Calculate(string expr)
     {
-        private Tokenizer tokenizer = new();
-        private Parser parser = new();
-        public double Calculate(string expr)
-        {
-            ///хз про decimal, надеюсь не будет косяков с округлением
-            List<string> tokens = tokenizer.Tokenize(expr);
-            result
-            return result;
-        }
+        ///хз про decimal, надеюсь не будет косяков с округлением
+        List<string> tokens = tokenizer.Tokenize(expr);
+        double result = parser.Evaluate(tokens);
+        return result;
     }
 }
