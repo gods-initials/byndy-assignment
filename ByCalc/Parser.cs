@@ -1,5 +1,6 @@
 using ByCalc.Operator;
 using ByCalc.Expressions;
+using ByCalc.Tokens;
 
 namespace ByCalc
 {
@@ -16,16 +17,19 @@ namespace ByCalc
                 {"/", new DivisionOperator()}
             };
         }
-        public Expression Parse(List<string> tokens)
+        public Expression Parse(List<Token> tokens)
         {
-            /// я наверное ещё успею пожалеть что не сделал класс для токенов
-            foreach (string token in tokens)
-            {
-                if (char.IsDigit(token))
-                if (this.operators.Keys.Contains(token))
-                {
+            var output = new Stack<Expression>();
+            var ops = new Stack<Token>();
 
-                }
+            foreach (Token token in tokens)
+            {
+                switch (token.Type)
+                {
+                    case TokenType.Number:
+                        output.Push(new NumberExpression(double.Parse(token.Value, System.Globalization.CultureInfo.InvariantCulture)));
+                        break;
+                }                
             }
             return expr;
         }
