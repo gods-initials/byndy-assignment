@@ -8,8 +8,8 @@ public class Calculator
     private Parser parser = new();
     public double Calculate(string expr)
     {
-        ///хз про decimal, надеюсь не будет косяков с округлением
         List<Token> tokens = tokenizer.Tokenize(expr);
+        /// rewrite to decimal if precision is necessary
         double result = parser.Parse(tokens);
         return result;
     }

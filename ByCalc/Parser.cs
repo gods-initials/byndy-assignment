@@ -6,12 +6,17 @@ namespace ByCalc
 {
     public class Parser
     {
+        /// <summary>
+        ///  parser based on dijkstra shunting yard
+        /// converts a Token sequence to an expression tree (AST)
+        /// </summary>
         private Dictionary<string, IOperator> operators;
         public Parser()
         {
             operators = new Dictionary<string, IOperator>
             {
-                {"+", new AdditionOperator()},
+                /// supported operators w/ implementations
+                { "+", new AdditionOperator()},
                 {"-", new SubtractionOperator()},
                 {"*", new MultiplicationOperator()},
                 {"/", new DivisionOperator()}
@@ -19,8 +24,8 @@ namespace ByCalc
         }
         public double Parse(List<Token> tokens)
         {
-            var output = new Stack<Expression>();
-            var ops = new Stack<Token>();
+            var output = new Stack<Expression>();   // expression nodes (AST parts)
+            var ops = new Stack<Token>();           // operator and parenthesis stack
 
             foreach (Token token in tokens)
             {

@@ -1,9 +1,14 @@
 namespace ByCalc.Operator;
 
+/// <summary>
+/// mathematical operators representation
+/// 
+/// when adding a new one also add it to the tokenizer magic string (i didn't have time to fix it sadly)
+/// </summary>
 public interface IOperator
 {
     string Symbol { get; }
-    int Precedence { get; }
+    int Precedence { get; }     /// highter = evaluated first
     double Calculate(double left, double right);
 }
 

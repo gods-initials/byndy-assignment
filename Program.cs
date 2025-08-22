@@ -25,7 +25,7 @@ public class CalcTesting
         List<Test> parsed_tests = new();
         foreach (string line in text)
         {
-            /// криво написано, но для начала пойдёт
+            /// input shouldn't have a '=' anyway
             string expr = line.Split('=')[0];
             string ans = line.Split('=')[1];
             parsed_tests.Add(new Test(expr, ans));
@@ -35,11 +35,19 @@ public class CalcTesting
     public static void Main(string[] args)
     {
         Calculator calc = new();
+        /// uncomment to run tests from txt
+        /// format is <expression>=<right answer>
+        /*
         string path = @"C:\Users\galah\Desktop\byndy-assignment\test.txt";
         List<Test> tests = ReadTestsFromTxt(path);
-        foreach (Test test in tests.Take(4))
+        foreach (Test test in tests)
         {
             Console.WriteLine($"{test} : {calc.Calculate(test.Expression) == Convert.ToDouble(test.Answer)}");
         }
+        */
+        Console.Write("Input the expression: ");
+        string expr = Console.ReadLine();
+        Console.Write("Result: ");
+        Console.WriteLine(calc.Calculate(expr));
     }
 }

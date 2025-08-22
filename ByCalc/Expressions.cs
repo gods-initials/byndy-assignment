@@ -2,11 +2,18 @@ using ByCalc.Operator;
 
 namespace ByCalc.Expressions;
 
+/// <summary>
+/// base class for all expression nodes in AST
+/// every expression must be able to evaluate itself to a numeric constant
+/// </summary>
 public abstract class Expression
 {
     public abstract double Evaluate();
 }
 
+/// <summary>
+/// leaf node, a numeric constant
+/// </summary>
 public class NumberExpression : Expression
 {
     public double Value { get; }
@@ -15,6 +22,9 @@ public class NumberExpression : Expression
     public override double Evaluate() => Value;
 }
 
+/// <summary>
+/// binary operation with left and right operands
+/// </summary>
 public class BinaryExpression : Expression
 {
     public Expression Left { get; }
