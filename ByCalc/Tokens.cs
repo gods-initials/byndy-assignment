@@ -64,7 +64,13 @@ public class Tokenizer
                 throw new Exception($"invalid character {e}");
             }
         }
-
+        /// на случай если ввод заканчивается числом а не скобкой
+        if (number.Length > 0)
+        {
+            var number_new = new Token(TokenType.Number, number.ToString());
+            tokens.Add(number_new);
+            number.Clear();
+        }
         return tokens;
     }
 }

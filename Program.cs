@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using System.IO;
 using System.Reflection;
-using ByCalc.Calculator;
+using ByCalc.Calculators;
 
 public class Test
 {
@@ -39,8 +39,7 @@ public class CalcTesting
         List<Test> tests = ReadTestsFromTxt(path);
         foreach (Test test in tests.Take(4))
         {
-            ///Console.WriteLine($"{test} : {calc.Calculate(test.Expression) == test.Answer}");
+            Console.WriteLine($"{test} : {calc.Calculate(test.Expression) == Convert.ToDouble(test.Answer)}");
         }
-        Console.WriteLine(char.IsDigit('3'));
     }
 }

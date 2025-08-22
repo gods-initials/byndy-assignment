@@ -1,6 +1,7 @@
-using System.IO.Pipelines;
+using ByCalc.Tokens;
+using ByCalc.Expressions;
 
-namespace ByCalc;
+namespace ByCalc.Calculators;
 public class Calculator
 {
     private Tokenizer tokenizer = new();
@@ -8,8 +9,8 @@ public class Calculator
     public double Calculate(string expr)
     {
         ///хз про decimal, надеюсь не будет косяков с округлением
-        List<string> tokens = tokenizer.Tokenize(expr);
-        double result = parser.Evaluate(tokens);
+        List<Token> tokens = tokenizer.Tokenize(expr);
+        double result = parser.Parse(tokens);
         return result;
     }
 }
