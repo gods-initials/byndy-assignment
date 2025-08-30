@@ -8,7 +8,7 @@ namespace ByCalc.Expressions;
 /// </summary>
 public abstract class Expression
 {
-    public abstract double Evaluate();
+    public abstract decimal Evaluate();
 }
 
 /// <summary>
@@ -16,10 +16,10 @@ public abstract class Expression
 /// </summary>
 public class NumberExpression : Expression
 {
-    public double Value { get; }
-    public NumberExpression(double value) => Value = value;
+    public decimal Value { get; }
+    public NumberExpression(decimal value) => Value = value;
 
-    public override double Evaluate() => Value;
+    public override decimal Evaluate() => Value;
 }
 
 /// <summary>
@@ -38,5 +38,5 @@ public class BinaryExpression : Expression
         Operator = op;
     }
 
-    public override double Evaluate() => Operator.Calculate(Left.Evaluate(), Right.Evaluate());
+    public override decimal Evaluate() => Operator.Calculate(Left.Evaluate(), Right.Evaluate());
 }

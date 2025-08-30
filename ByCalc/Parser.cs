@@ -22,7 +22,7 @@ namespace ByCalc
                 {"/", new DivisionOperator()}
             };
         }
-        public double Parse(List<Token> tokens)
+        public decimal Parse(List<Token> tokens)
         {
             var output = new Stack<Expression>();   // expression nodes (AST parts)
             var ops = new Stack<Token>();           // operator and parenthesis stack
@@ -32,7 +32,7 @@ namespace ByCalc
                 switch (token.Type)
                 {
                     case TokenType.Number:
-                        output.Push(new NumberExpression(double.Parse(token.Value)));
+                        output.Push(new NumberExpression(decimal.Parse(token.Value)));
                         break;
                     case TokenType.Operator:
                         while (ops.Count > 0 && ops.Peek().Type == TokenType.Operator &&
@@ -70,7 +70,7 @@ namespace ByCalc
                 var op = operators[ops.Pop().Value];
                 output.Push(new BinaryExpression(left, right, op));
             }
-            double result = output.Pop().Evaluate();
+            decimal result = output.Pop().Evaluate();
             return result;
         }
     }
