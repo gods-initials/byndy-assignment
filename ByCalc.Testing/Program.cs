@@ -37,17 +37,24 @@ public class CalcTesting
         Calculator calc = new();
         /// uncomment to run tests from txt
         /// format is <expression>=<right answer>
-        string path = @"C:\Users\galah\Desktop\byndy-assignment\test.txt";
+        /*
+        string path = @"C:\Users\galah\Desktop\byndy-assignment\ByCalc.Testing\test.txt";
         List<Test> tests = ReadTestsFromTxt(path);
         foreach (Test test in tests)
         {
             Console.WriteLine($"{test} : {calc.Calculate(test.Expression) == Convert.ToDecimal(test.Answer)}");
         }
-        /*
-        Console.Write("Input the expression: ");
-        string expr = Console.ReadLine();
-        Console.Write("Result: ");
-        Console.WriteLine(calc.Calculate(expr));
         */
+        
+        Console.WriteLine("Type \"END\" to exit.");
+        string expr = "";
+        while (expr != "END")
+        {
+            Console.Write("Input the expression: ");
+            expr = Console.ReadLine();
+            Console.Write("Result: ");
+            Console.WriteLine(calc.Calculate(expr));
+        }
+        
     }
 }
