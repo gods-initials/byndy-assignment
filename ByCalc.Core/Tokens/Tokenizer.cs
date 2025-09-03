@@ -2,28 +2,7 @@ using System.Text;
 using ByCalc.Operators;
 
 namespace ByCalc.Tokens;
-public enum TokenType
-{
-    Newline,
-    Number,
-    BinaryOperator,
-    UnaryOperator,
-    LeftParen,
-    RightParen
-}
-/// <summary>
-/// needed this class to track token type
-/// </summary>
-public class Token
-{
-    public TokenType Type { get; }
-    public string Value { get; }
-    public Token(TokenType type, string value)
-    {
-        this.Type = type;
-        this.Value = value;
-    }
-}
+
 /// <summary>
 /// a tokenizer, loops through a string and returns a list of Tokens
 /// </summary>
@@ -35,7 +14,7 @@ public class Tokenizer
     public HashSet<string> operators;
     List<Token> tokens = new();     /// list of tokens
     StringBuilder number = new();   /// buffer for number assembly
-    Token previousToken;
+    Token previousToken = new Token(TokenType.Newline, "");
     HashSet<TokenType> unaryPrecedingOperators;
     public Tokenizer()
     {

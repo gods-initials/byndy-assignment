@@ -45,16 +45,14 @@ public class CalcTesting
             Console.WriteLine($"{test} : {calc.Calculate(test.Expression) == Convert.ToDecimal(test.Answer)}");
         }
         */
-        
-        Console.WriteLine("Type \"END\" to exit.");
-        string expr = "";
-        while (expr != "END")
+        Console.WriteLine("Type \"end\" to exit.");
+        string? expr = "";
+        while (expr != "end")
         {
             Console.Write("Input the expression: ");
             expr = Console.ReadLine();
             Console.Write("Result: ");
             Console.WriteLine(calc.Calculate(expr));
         }
-        
     }
 }

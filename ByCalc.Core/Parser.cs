@@ -1,6 +1,7 @@
 using ByCalc.Operators;
 using ByCalc.Expressions;
 using ByCalc.Tokens;
+using System.IO.Pipelines;
 
 namespace ByCalc;
 /// <summary>
@@ -50,6 +51,7 @@ public class Parser
     }
     public decimal Parse(List<Token> tokens)
     {
+        decimal result;
         foreach (Token token in tokens)
         {
             switch (token.Type)
@@ -84,9 +86,16 @@ public class Parser
         {
             PushExpression();
         }
-        decimal result = output.Pop().Evaluate();
-        output.Clear();
-        ops.Clear();
+        if (output.Count > 0)
+        {
+            result = output.Pop().Evaluate();
+            output.Clear();
+            ops.Clear();
+        }
+        else
+        {
+            result = 0;
+        }
         return result;
     }
 }
