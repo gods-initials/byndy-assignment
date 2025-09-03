@@ -2,6 +2,7 @@ using ByCalc.Operators;
 using ByCalc.Expressions;
 using ByCalc.Tokens;
 using System.IO.Pipelines;
+using Xunit.Sdk;
 
 namespace ByCalc;
 /// <summary>
@@ -25,6 +26,10 @@ public class Parser
     {
         if (ops.Peek().Type == TokenType.BinaryOperator)
         {
+            if (output.Count < 2)
+            {
+                throw new Exception("operator mismatch");
+            }
             var right = output.Pop();
             var left = output.Pop();
             var op = binaryOperators[ops.Pop().Value];
@@ -32,6 +37,10 @@ public class Parser
         }
         else if (ops.Peek().Type == TokenType.UnaryOperator)
         {
+            if (output.Count < 1)
+            {
+                throw new Exception("operator mismatch");
+            }
             var operand = output.Pop();
             var op = unaryOperators[ops.Pop().Value];
             output.Push(new UnaryExpression(operand, op));
